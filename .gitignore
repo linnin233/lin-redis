@@ -1,0 +1,9 @@
+node_modules/
+target/
+*.class
+*.jar
+/dist/
+/.idea/
+.vscode/
+*.log
+.DS_Store

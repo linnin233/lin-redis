@@ -1,0 +1,74 @@
+lin-redis (JS) Test Report
+==========================
+Timestamp: 2026-05-06T14:18:05.518Z
+
+[PASS] Suite: String Commands
+  [OK] SET basic (0ms)
+  [OK] GET existing (0ms)
+  [OK] GET non-existing (1ms)
+  [OK] SET with EX (2501ms)
+  [OK] SETEX (2502ms)
+  [OK] DEL single (1ms)
+  [OK] DEL multiple (1ms)
+  [OK] EXISTS (0ms)
+  [OK] EXPIRE (1502ms)
+  [OK] INCR / INCRBY (2ms)
+  [OK] INCRBY with stats key pattern (0ms)
+  [OK] MGET (1ms)
+  [OK] KEYS pattern (0ms)
+  [OK] okbang user:token pattern (1ms)
+  [OK] MSET (0ms)
+  [OK] APPEND / STRLEN (1ms)
+  [OK] DECR / DECRBY (0ms)
+  [OK] TTL (0ms)
+  [OK] SET NX / XX (1ms)
+
+[PASS] Suite: Hash Commands
+  [OK] HSET / HGET (0ms)
+  [OK] HMSET / HGETALL (1ms)
+  [OK] HDEL (0ms)
+  [OK] HMGET (0ms)
+  [OK] HEXISTS (0ms)
+  [OK] HLEN (1ms)
+  [OK] okbang HTTP log hash (0ms)
+  [OK] HSETNX (0ms)
+  [OK] HKEYS / HVALS (0ms)
+
+[PASS] Suite: List Commands
+  [OK] RPUSH / LRANGE (0ms)
+  [OK] LPUSH (0ms)
+  [OK] LLEN (0ms)
+  [OK] LPOP (1ms)
+  [OK] RPOP (0ms)
+  [OK] LRANGE with offsets (0ms)
+  [OK] RPUSH with okbang categoryEntities (0ms)
+  [OK] LINDEX (1ms)
+  [OK] LREM (0ms)
+
+[PASS] Suite: Set Commands
+  [OK] SADD / SMEMBERS (1ms)
+  [OK] SISMEMBER (1ms)
+  [OK] SREM (0ms)
+  [OK] SCARD (0ms)
+
+[PASS] Suite: ZSet Commands
+  [OK] ZADD / ZSCORE (0ms)
+  [OK] ZRANGE (0ms)
+  [OK] ZRANGE WITHSCORES (1ms)
+  [OK] ZRANGEBYSCORE (0ms)
+  [OK] ZRANGEBYSCORE WITHSCORES LIMIT (0ms)
+  [OK] okbang sentence length zset (1ms)
+  [OK] ZREM (2ms)
+  [OK] ZCARD / ZCOUNT (0ms)
+
+[PASS] Suite: Server Commands
+  [OK] PING (0ms)
+  [OK] SELECT / FLUSHDB (1ms)
+  [OK] SCAN (1ms)
+  [OK] DBSIZE (0ms)
+  [OK] INFO (0ms)
+  [OK] MULTI Database (0ms)
+  [OK] okbang DB pattern test (0/9/10/11/12) (1ms)
+  [OK] CONDITIONAL auth bypass (1ms)
+
+Total: 57/57 passed, 0 failed

@@ -1,0 +1,402 @@
+{
+  "timestamp": "2026-05-06T14:18:05.518Z",
+  "version": "js",
+  "summary": {
+    "total": 57,
+    "passed": 57,
+    "failed": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "String Commands",
+      "passed": 19,
+      "failed": 0,
+      "duration_ms": 6514,
+      "cases": [
+        {
+          "command": "SET basic",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "GET existing",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "GET non-existing",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "SET with EX",
+          "status": "PASS",
+          "duration_ms": 2501,
+          "message": ""
+        },
+        {
+          "command": "SETEX",
+          "status": "PASS",
+          "duration_ms": 2502,
+          "message": ""
+        },
+        {
+          "command": "DEL single",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "DEL multiple",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "EXISTS",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "EXPIRE",
+          "status": "PASS",
+          "duration_ms": 1502,
+          "message": ""
+        },
+        {
+          "command": "INCR / INCRBY",
+          "status": "PASS",
+          "duration_ms": 2,
+          "message": ""
+        },
+        {
+          "command": "INCRBY with stats key pattern",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "MGET",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "KEYS pattern",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "okbang user:token pattern",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "MSET",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "APPEND / STRLEN",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "DECR / DECRBY",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "TTL",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "SET NX / XX",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        }
+      ]
+    },
+    {
+      "name": "Hash Commands",
+      "passed": 9,
+      "failed": 0,
+      "duration_ms": 2,
+      "cases": [
+        {
+          "command": "HSET / HGET",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "HMSET / HGETALL",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "HDEL",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "HMGET",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "HEXISTS",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "HLEN",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "okbang HTTP log hash",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "HSETNX",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "HKEYS / HVALS",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        }
+      ]
+    },
+    {
+      "name": "List Commands",
+      "passed": 9,
+      "failed": 0,
+      "duration_ms": 2,
+      "cases": [
+        {
+          "command": "RPUSH / LRANGE",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "LPUSH",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "LLEN",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "LPOP",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "RPOP",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "LRANGE with offsets",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "RPUSH with okbang categoryEntities",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "LINDEX",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "LREM",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        }
+      ]
+    },
+    {
+      "name": "Set Commands",
+      "passed": 4,
+      "failed": 0,
+      "duration_ms": 2,
+      "cases": [
+        {
+          "command": "SADD / SMEMBERS",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "SISMEMBER",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "SREM",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "SCARD",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        }
+      ]
+    },
+    {
+      "name": "ZSet Commands",
+      "passed": 8,
+      "failed": 0,
+      "duration_ms": 4,
+      "cases": [
+        {
+          "command": "ZADD / ZSCORE",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "ZRANGE",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "ZRANGE WITHSCORES",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "ZRANGEBYSCORE",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "ZRANGEBYSCORE WITHSCORES LIMIT",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "okbang sentence length zset",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "ZREM",
+          "status": "PASS",
+          "duration_ms": 2,
+          "message": ""
+        },
+        {
+          "command": "ZCARD / ZCOUNT",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        }
+      ]
+    },
+    {
+      "name": "Server Commands",
+      "passed": 8,
+      "failed": 0,
+      "duration_ms": 4,
+      "cases": [
+        {
+          "command": "PING",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "SELECT / FLUSHDB",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "SCAN",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "DBSIZE",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "INFO",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "MULTI Database",
+          "status": "PASS",
+          "duration_ms": 0,
+          "message": ""
+        },
+        {
+          "command": "okbang DB pattern test (0/9/10/11/12)",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        },
+        {
+          "command": "CONDITIONAL auth bypass",
+          "status": "PASS",
+          "duration_ms": 1,
+          "message": ""
+        }
+      ]
+    }
+  ]
+}
