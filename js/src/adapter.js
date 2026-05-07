@@ -1,13 +1,32 @@
+/**
+ * LinRedisAdapter - Redis 客户端适配器（直接方法调用模式）
+ * 
+ * 实现与 redis npm 包相同的接口，但直接调用 Database 方法，
+ * 无需 TCP/RESP 序列化，零网络开销。
+ * 
+ * 支持的命令：
+ * - 字符串: set, get, setEx, mGet, mSet, incr, incrBy, decr, decrBy, append, getRange, strlen, getSet
+ * - 键操作: del, exists, keys, expire, ttl, type, rename, randomKey
+ * - 哈希: hSet, hGet, hGetAll, hExists, hDel, hKeys, hVals, hLen
+ * - 列表: lPush, rPush, lPop, rPop, lLen, lRange, lTrim, lIndex, lInsert, lSet, lRem
+ * - 集合: sAdd, sMembers, sRem, sIsMember, sCard, sInter, sInterStore, sUnion, sDiff, sRandMember, sPop
+ * - 有序集合: zAdd, zScore, zRange, zRangeByScore, zCard, zRem, zIncrBy, zRank, zRemRangeByRank
+ * - 数据库: flushDb, flushAll, select, dbsize, info, ping, echo
+ * - 扫描: scan
+ * 
+ * @module adapter
+ */
 const { Database } = require('./store/database');
 
 class LinRedisAdapter {
     constructor(options = {}) {
-        this._dbIndex = options.database || 0;
-        this._dbs = new Map();
-        this._events = Object.create(null);
-        this.isOpen = false;
+        this._dbIndex = options.database || 0; // 当前数据库索引
+        this._dbs = new Map(); // 数据库实例缓存
+        this._events = Object.create(null); // 事件回调
+        this.isOpen = false; // 连接状态
     }
 
+    // 确保指定索引的数据库实例存在
     _ensureDb(index) {
         if (!this._dbs.has(index)) {
             this._dbs.set(index, new Database(index));
@@ -15,9 +34,12 @@ class LinRedisAdapter {
         return this._dbs.get(index);
     }
 
+    // 获取当前数据库实例
     _db() {
         return this._ensureDb(this._dbIndex);
     }
+
+    // ==================== 事件系统 ====================
 
     on(event, handler) {
         if (!this._events[event]) this._events[event] = [];
@@ -33,6 +55,8 @@ class LinRedisAdapter {
             }
         }
     }
+
+    // ==================== 连接生命周期 ====================
 
     async connect() {
         this.isOpen = true;
@@ -51,7 +75,7 @@ class LinRedisAdapter {
         this.isOpen = false;
     }
 
-    // ==================== String 操作 ====================
+    // ==================== 字符串操作 ====================
 
     async set(key, value) {
         this._db().setString(key, String(value), 0);
@@ -72,7 +96,7 @@ class LinRedisAdapter {
         return keys.map(k => db.getString(k) ?? null);
     }
 
-    // ==================== Key 操作 ====================
+    // ==================== 键操作 ====================
 
     async del(keys) {
         return this._db().deleteKeys(Array.isArray(keys) ? keys : [keys]);
@@ -112,7 +136,7 @@ class LinRedisAdapter {
         return this._db().keyType(key);
     }
 
-    // ==================== SCAN 操作 ====================
+    // ==================== 扫描操作 ====================
 
     async scan(cursor, options = {}) {
         const db = this._db();
@@ -128,7 +152,7 @@ class LinRedisAdapter {
         return { cursor: newCursor, keys: slice };
     }
 
-    // ==================== Hash 操作 ====================
+    // ==================== 哈希操作 ====================
 
     async hSet(key, field, value) {
         const db = this._db();
@@ -172,7 +196,7 @@ class LinRedisAdapter {
         return this._db().getHashAll(key).size;
     }
 
-    // ==================== List 操作 ====================
+    // ==================== 列表操作 ====================
 
     async lPush(key, values) {
         const arr = Array.isArray(values) ? values : [values];
@@ -272,7 +296,7 @@ class LinRedisAdapter {
         return removed;
     }
 
-    // ==================== Set 操作 ====================
+    // ==================== 集合操作 ====================
 
     async sAdd(key, members) {
         const arr = Array.isArray(members) ? members : [members];
