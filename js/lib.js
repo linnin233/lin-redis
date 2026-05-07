@@ -1,2 +1,3 @@
 const { LinRedisServer } = require('./src/server');
-module.exports = { LinRedisServer };
+const { LinRedisAdapter } = require('./src/adapter');
+module.exports = { LinRedisServer, LinRedisAdapter };
