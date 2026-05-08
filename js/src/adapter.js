@@ -444,12 +444,12 @@ class LinRedisAdapter {
     }
 
     async zRange(key, start, stop, options) {
-        const withScores = !!(options && options.withScores);
+        const withScores = options && options.withScores === true;
         return this._db().zsetRange(key, start, stop, withScores);
     }
 
     async zRangeByScore(key, min, max, options) {
-        const withScores = !!(options && options.withScores);
+        const withScores = options && options.withScores === true;
         return this._db().zsetRangeByScore(key, min, max, withScores, 0, 0);
     }
 
