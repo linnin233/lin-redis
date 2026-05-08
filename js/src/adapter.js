@@ -689,22 +689,6 @@ class LinRedisAdapter {
         let totalStrings = 0, totalHashes = 0, totalLists = 0, totalSets = 0, totalZSets = 0;
 
         for (const [index, db] of this._dbs) {
-            const strKeys = [...db.strings.keys()];
-            const hashKeys = [...db.hashes.keys()];
-            const listKeys = [...db.lists.keys()];
-            const setKeys = [...db.sets.keys()];
-            const zsetKeys = [...db.zsets.keys()];
-
-            // key 列表：string 类型数量多时只取样本，其余类型全量
-            const allKeys = {
-                strings: strKeys.length > 100 ? strKeys.slice(0, 50) : strKeys,
-                _stringTotal: strKeys.length,
-                hashes: hashKeys,
-                lists: listKeys,
-                sets: setKeys,
-                zsets: zsetKeys,
-            };
-
             const info = {
                 index,
                 strings: db.strings.size,
@@ -713,7 +697,6 @@ class LinRedisAdapter {
                 sets: db.sets.size,
                 zsets: db.zsets.size,
                 totalKeys: db.strings.size + db.hashes.size + db.lists.size + db.sets.size + db.zsets.size,
-                keys: allKeys,
             };
             dbInfos.push(info);
             totalStrings += info.strings;
