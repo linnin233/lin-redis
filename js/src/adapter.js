@@ -695,14 +695,15 @@ class LinRedisAdapter {
             const setKeys = [...db.sets.keys()];
             const zsetKeys = [...db.zsets.keys()];
 
-            // 每种类型取前3个key名作为样本
-            const sampleKeys = [
-                ...strKeys.slice(0, 3).map(k => ({ type: 'string', key: k })),
-                ...hashKeys.slice(0, 3).map(k => ({ type: 'hash', key: k })),
-                ...listKeys.slice(0, 3).map(k => ({ type: 'list', key: k })),
-                ...setKeys.slice(0, 3).map(k => ({ type: 'set', key: k })),
-                ...zsetKeys.slice(0, 3).map(k => ({ type: 'zset', key: k })),
-            ].slice(0, 20);
+            // key 列表：string 类型数量多时只取样本，其余类型全量
+            const allKeys = {
+                strings: strKeys.length > 100 ? strKeys.slice(0, 50) : strKeys,
+                _stringTotal: strKeys.length,
+                hashes: hashKeys,
+                lists: listKeys,
+                sets: setKeys,
+                zsets: zsetKeys,
+            };
 
             const info = {
                 index,
@@ -712,7 +713,7 @@ class LinRedisAdapter {
                 sets: db.sets.size,
                 zsets: db.zsets.size,
                 totalKeys: db.strings.size + db.hashes.size + db.lists.size + db.sets.size + db.zsets.size,
-                sampleKeys,
+                keys: allKeys,
             };
             dbInfos.push(info);
             totalStrings += info.strings;
