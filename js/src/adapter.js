@@ -677,6 +677,66 @@ class LinRedisAdapter {
         }
         return 'OK';
     }
+
+    // ==================== 运行时信息 ====================
+
+    /**
+     * 获取运行时信息（全部数据库的KV统计等）
+     * @returns {Object} 运行时状态信息
+     */
+    getRuntimeInfo() {
+        const dbInfos = [];
+        let totalStrings = 0, totalHashes = 0, totalLists = 0, totalSets = 0, totalZSets = 0;
+
+        for (const [index, db] of this._dbs) {
+            const strKeys = [...db.strings.keys()];
+            const hashKeys = [...db.hashes.keys()];
+            const listKeys = [...db.lists.keys()];
+            const setKeys = [...db.sets.keys()];
+            const zsetKeys = [...db.zsets.keys()];
+
+            // 每种类型取前3个key名作为样本
+            const sampleKeys = [
+                ...strKeys.slice(0, 3).map(k => ({ type: 'string', key: k })),
+                ...hashKeys.slice(0, 3).map(k => ({ type: 'hash', key: k })),
+                ...listKeys.slice(0, 3).map(k => ({ type: 'list', key: k })),
+                ...setKeys.slice(0, 3).map(k => ({ type: 'set', key: k })),
+                ...zsetKeys.slice(0, 3).map(k => ({ type: 'zset', key: k })),
+            ].slice(0, 20);
+
+            const info = {
+                index,
+                strings: db.strings.size,
+                hashes: db.hashes.size,
+                lists: db.lists.size,
+                sets: db.sets.size,
+                zsets: db.zsets.size,
+                totalKeys: db.strings.size + db.hashes.size + db.lists.size + db.sets.size + db.zsets.size,
+                sampleKeys,
+            };
+            dbInfos.push(info);
+            totalStrings += info.strings;
+            totalHashes += info.hashes;
+            totalLists += info.lists;
+            totalSets += info.sets;
+            totalZSets += info.zsets;
+        }
+
+        return {
+            mode: 'direct',
+            dbCount: this._dbs.size,
+            activeDbIndex: this._dbIndex,
+            totalKeys: totalStrings + totalHashes + totalLists + totalSets + totalZSets,
+            typeBreakdown: {
+                strings: totalStrings,
+                hashes: totalHashes,
+                lists: totalLists,
+                sets: totalSets,
+                zsets: totalZSets,
+            },
+            databases: dbInfos,
+        };
+    }
 }
 
 module.exports = { LinRedisAdapter };
